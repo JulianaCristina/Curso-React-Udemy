@@ -45,37 +45,47 @@ const app = props => {
     }
 
     const togglePersonsHandler = () => {
-        const  doesShow = personsState.showPersons;
-        setPersonsState(init => ({...init, showPersons : !doesShow}));
+        const doesShow = personsState.showPersons;
+        setPersonsState(init => ({...init, showPersons: !doesShow}));
     }
 
-    return (
-        <div className="App">
-            <h1>Heloo</h1>
-            <button
-                style={style}
-                onClick={togglePersonsHandler}>Switch Name
-            </button>
-            {
-                personsState.showPersons ?
-                    <div>
-                        <Person
-                            name={personsState.persons[0].name}
-                            age={personsState.persons[0].age}
-                            click={switchNameHandler.bind(this, 'MAAAx')}
-                        />
-                        <Person
-                            name={personsState.persons[1].name}
-                            age={personsState.persons[1].age}
-                            changed={nameChangeHandler}
-                        />
-                        <Person name={personsState.persons[2].name} age={personsState.persons[2].age}/>
-                        <Person name="Juliana" age="22"> My Hobbies: Racing</Person>
-                    </div> : null
-            }
+    render()
+    {
 
-        </div>
-    );
+        let persons = null
+
+        if (personsState.showPersons) {
+            persons = (
+                <div>
+                    <Person
+                        name={personsState.persons[0].name}
+                        age={personsState.persons[0].age}
+                        click={switchNameHandler.bind(this, 'MAAAx')}
+                    />
+                    <Person
+                        name={personsState.persons[1].name}
+                        age={personsState.persons[1].age}
+                        changed={nameChangeHandler}
+                    />
+                    <Person name={personsState.persons[2].name} age={personsState.persons[2].age}/>
+                    <Person name="Juliana" age="22"> My Hobbies: Racing</Person>
+                </div>
+            )
+        }
+
+
+        return (
+            <div className="App">
+                <h1>Heloo</h1>
+                <button
+                    style={style}
+                    onClick={togglePersonsHandler}>Switch Name
+                </button>
+                {persons}
+
+            </div>
+        );
+    }
 }
 
 export default app;
