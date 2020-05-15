@@ -8,9 +8,10 @@ const app = props => {
             {name: 'Max', age: 28},
             {name: 'Juliana', age: 23},
             {name: 'Daniel', age: 28},
-        ]
+        ],
+        showPersons: false
     })
-    useState("some other value")
+    // useState("some other value")
     const switchNameHandler = (newName) => {
         //console.log('Was clicked!')
         setPersonsState({
@@ -43,24 +44,36 @@ const app = props => {
 
     }
 
+    const togglePersonsHandler = () => {
+        const  doesShow = personsState.showPersons;
+        setPersonsState(init => ({...init, showPersons : !doesShow}));
+    }
+
     return (
         <div className="App">
             <h1>Heloo</h1>
             <button
                 style={style}
-                onClick={ () => switchNameHandler('Maxxxxxxxxx')}>Switch Name</button>
-            <Person
-                name={personsState.persons[0].name}
-                age={personsState.persons[0].age}
-                click={switchNameHandler.bind(this, 'MAAAx')}
-            />
-            <Person
-                name={personsState.persons[1].name}
-                age={personsState.persons[1].age}
-                changed={nameChangeHandler}
-            />
-            <Person name={personsState.persons[2].name} age={personsState.persons[2].age}/>
-            <Person name="Juliana" age="22"> My Hobbies: Racing</Person>
+                onClick={togglePersonsHandler}>Switch Name
+            </button>
+            {
+                personsState.showPersons ?
+                    <div>
+                        <Person
+                            name={personsState.persons[0].name}
+                            age={personsState.persons[0].age}
+                            click={switchNameHandler.bind(this, 'MAAAx')}
+                        />
+                        <Person
+                            name={personsState.persons[1].name}
+                            age={personsState.persons[1].age}
+                            changed={nameChangeHandler}
+                        />
+                        <Person name={personsState.persons[2].name} age={personsState.persons[2].age}/>
+                        <Person name="Juliana" age="22"> My Hobbies: Racing</Person>
+                    </div> : null
+            }
+
         </div>
     );
 }
