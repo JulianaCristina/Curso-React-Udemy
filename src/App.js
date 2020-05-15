@@ -23,6 +23,16 @@ const app = props => {
         })
     }
 
+    const nameChangeHandler = (event) => {
+        setPersonsState({
+            persons: [
+                {name: 'Max', age: 28},
+                {name: event.target.value, age: 23},
+                {name: 'Daniel', age: 29},
+            ],
+            otherState: personsState.otherState
+        })
+    }
     return (
         <div className="App">
             <h1>Heloo</h1>
@@ -32,7 +42,11 @@ const app = props => {
                 age={personsState.persons[0].age}
                 click={switchNameHandler.bind(this, 'MAAAx')}
             />
-            <Person name={personsState.persons[1].name} age={personsState.persons[1].age}/>
+            <Person
+                name={personsState.persons[1].name}
+                age={personsState.persons[1].age}
+                changed={nameChangeHandler}
+            />
             <Person name={personsState.persons[2].name} age={personsState.persons[2].age}/>
             <Person name="Juliana" age="22"> My Hobbies: Racing</Person>
         </div>
