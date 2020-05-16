@@ -4,15 +4,15 @@ import styled from "styled-components";
 import Person from './Person/Person';
 
 const StyleButton = styled.button`
-            background-color: green,
-            color: white,
-            font: inherit,
-            border: 1px solid blue,
-            padding: 8px,
-            cursor: pointer,
+            background-color: ${props => props.alt ? 'red' : 'green'};
+            color: white;
+            font: inherit;
+            border: 1px solid blue;
+            padding: 8px;
+            cursor: pointer;
             &:hover {
-                background-color: lightgreen,
-                color: black
+                background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+                color: black;
             }   
 `
 
@@ -76,11 +76,11 @@ class App extends Component {
                     })}
                 </div>
             );
-            style.backgroundColor = 'red';
-            style[':hover'] = {
-                backgroundColor: 'salmon',
-                color: 'black'
-            }
+            // style.backgroundColor = 'red';
+            // style[':hover'] = {
+            //     backgroundColor: 'salmon',
+            //     color: 'black'
+            // }
         }
 
         // const classes = ['red', 'bold'].join(' '); //"red bold"
@@ -101,6 +101,7 @@ class App extends Component {
                 {/*<p className={classes}>This is really working!</p>*/}
                 <p className={classes.join(' ')}>This is really working!</p>
                 <StyleButton
+                    alt={this.state.showPersons}
                     onClick={this.togglePersonsHandler}>Toggle Persons
                 </StyleButton>
                 {persons}
