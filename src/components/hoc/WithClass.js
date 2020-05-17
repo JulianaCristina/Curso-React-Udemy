@@ -8,7 +8,7 @@ const withClass = props => {
 const withClass = (WrappedComponent, className) => {
     return props => (
         <div className={className}>
-            <WrappedComponent/>
+            <WrappedComponent {...props}/>
         </div>
     );
 }
