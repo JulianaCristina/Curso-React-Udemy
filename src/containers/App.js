@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import Persons from '../components/Persons/Persons';
+import WithClass from '../components/hoc/WithClass'
 import Cockpit from '../components/Cockpit/Cockpit'
 
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+    }
     state = {
         persons: [
             {id: '1', name: 'Max', age: 28},
@@ -14,6 +18,10 @@ class App extends Component {
         showPersons: false
     }
 
+    static getDerivedStateFromProps(props, state){
+        console.log('[App.js] getDerivedStateFromProps', props)
+        return state;
+    }
 
     nameChangedHandler = (event, id) => {
         const personIndex = this.state.persons.findIndex(p => {
@@ -60,7 +68,7 @@ class App extends Component {
 
         return (
 
-            <div className="App">
+            <WithClass classes={classes.App}>
                 <Cockpit
                     title={this.props.appTitle}
                     showPersons={this.state.showPersons}
@@ -68,7 +76,7 @@ class App extends Component {
                     clicked={this.togglePersonsHandler}
                 />
                 {persons}
-            </div>
+            </WithClass>
 
         );
 
